@@ -1,4 +1,8 @@
+import time
+from asyncio import timeout
+
 import pieces
+import movement
 
 def output():
     for i in range(4, 24):
@@ -31,7 +35,9 @@ board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
+coords = pieces.ipiece(board)
 
-pieces.ipiece(board)
-
-output()
+while True:
+    output()
+    movement.gravity(board,coords)
+    time.sleep(1)
