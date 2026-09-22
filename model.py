@@ -1,6 +1,4 @@
 import time
-from asyncio import timeout
-
 import pieces
 import movement
 
@@ -11,11 +9,9 @@ def output():
 
 def collided(board, coords):
     for i in range(4):
-        if board[coords[i][0]+1][coords[i][1]] == 0:
-            return False
-        else:
+        if board[coords[i][0]+1][coords[i][1]] == 1:
             return True
-
+    return False
 board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
