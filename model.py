@@ -9,6 +9,13 @@ def output():
         print(board[i])
     print("\n")
 
+def collided(board, coords):
+    for i in range(4):
+        if board[coords[i][0]+1][coords[i][1]] == 0:
+            return False
+        else:
+            return True
+
 board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,7 +33,7 @@ board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -35,9 +42,15 @@ board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
-coords = pieces.ipiece(board)
 
-while True:
-    output()
-    movement.gravity(board,coords)
-    time.sleep(1)
+coords = pieces.ipiece(board)
+output()
+
+for i in range(19):
+    if collided(board,coords) == False:
+        movement.gravity(board,coords)
+        output()
+        time.sleep(1)
+    else:
+        print("collided")
+        break
