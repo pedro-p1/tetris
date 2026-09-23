@@ -2,12 +2,12 @@ import time
 import pieces
 import movement
 
-def output():
+def print_board():
     for i in range(4, 24):
         print(board[i])
     print("\n")
 
-def collided(board, coords):
+def will_collide(board, coords):
     for i in range(4):
         if board[coords[i][0]+1][coords[i][1]] == 1:
             return True
@@ -27,7 +27,7 @@ board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -50,11 +50,11 @@ board = [
 for i in range(5):
     if gameover(board) == False:
         coords = pieces.ipiece(board)
-        output()
-        for i in range(19):
-            if collided(board,coords) == False:
+        print_board()
+        for maximum in range(20):
+            if will_collide(board, coords) == False:
                 movement.gravity(board,coords)
-                output()
+                print_board()
                 time.sleep(1)
             else:
                 break
